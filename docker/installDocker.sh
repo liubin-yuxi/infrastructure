@@ -20,3 +20,6 @@ apt-get install docker-ce
 sudo gpasswd -a jenkins docker     #将登陆用户加入到docker用户组中
 newgrp docker     #更新用户组
 docker ps  
+
+
+echo 'DOCKER_OPTS="--registry-mirror=https://docker.mirrors.ustc.edu.cn"' >> /etc/default/docker
