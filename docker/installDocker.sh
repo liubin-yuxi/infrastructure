@@ -23,3 +23,5 @@ docker ps
 
 
 echo 'DOCKER_OPTS="--registry-mirror=https://docker.mirrors.ustc.edu.cn"' >> /etc/default/docker
+
+# curl -sSL https://get.daocloud.io/docker | sh
