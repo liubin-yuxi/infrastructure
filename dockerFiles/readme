@@ -1,0 +1,6 @@
+使用说明:
+按顺序执行以下命令
+sh build.sh
+sh startDockerMongoLatest.sh
+
+cleanDockers.sh 可以用来清理没用的image container 释放磁盘空间
