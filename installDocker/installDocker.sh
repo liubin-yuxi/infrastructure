@@ -1,5 +1,5 @@
 apt-get update
-apt-get install \
+apt-get install -y \
     apt-transport-https \
     ca-certificates \
     curl \
@@ -14,7 +14,7 @@ add-apt-repository \
    stable"
 
 apt-get update
-apt-get install docker-ce
+apt-get install -y docker-ce
 
 #sudo groupadd docker     #添加docker用户组
 sudo gpasswd -a jenkins docker     #将登陆用户加入到docker用户组中

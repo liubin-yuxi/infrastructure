@@ -1,0 +1,1 @@
+docker build -t py:3.6 -f py3.6.docker .
