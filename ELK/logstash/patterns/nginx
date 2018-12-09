@@ -1,0 +1,1 @@
+NGINXACCESS %{IPV4:remote_addr} - (%{USERNAME:user}|-) \[%{DATA:log_timestamp}\] (%{HOSTNAME:http_host}|-) \"(%{URIPATH:uri}|-|)\" \"(%{URIPARAM:param}|-)\" (%{WORD:request_method}|-) (%{BASE10NUM:http_status}|-) (?:%{BASE10NUM:body_bytes_sent}|-) (?:%{BASE10NUM:requesttime}|-) \"(%{URI:referer}|-)\" \"(%{GREEDYDATA:http_x_forwarded_for}|-)\" \"(%{GREEDYDATA:agent}|-)\"

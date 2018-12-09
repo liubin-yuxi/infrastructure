@@ -1,0 +1,37 @@
+FROM ubuntu:18.04
+USER root
+
+COPY ./sources.list /etc/apt/sources.list
+#RUN sed -i 's/http:\/\/archive\.ubuntu\.com\/ubuntu\//http:\/\/mirrors\.163\.com\/ubuntu\//g' /etc/apt/sources.list
+RUN apt-get update && apt-get install -y software-properties-common vim wget #python-software-properties
+ENV EDITOR vi
+
+# java
+#RUN add-apt-repository -y ppa:webupd8team/java 
+#RUN apt-get update
+#RUN apt-get -yqq install oracle-java8-installer 
+#RUN apt-get install -y apt-transport-https
+
+RUN mkdir -p /usr/lib/java
+COPY ./jdk-8u192-linux-x64.tar.gz /usr/lib/java/
+WORKDIR /usr/lib/java/
+RUN tar -zxvf  jdk-8u192-linux-x64.tar.gz
+#COPY ./javahome.sh ./
+#RUN sh javahome.sh
+
+ENV JAVA_HOME /usr/lib/java/jdk1.8.0_192 
+ENV JRE_HOME ${JAVA_HOME}/jre 
+ENV CLASSPATH .:${JAVA_HOME}/lib:${JRE_HOME}/lib  
+ENV PATH ${JAVA_HOME}/bin:$PATH 
+
+# es
+RUN wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch |  apt-key add 
+RUN echo "deb https://artifacts.elastic.co/packages/6.x/apt stable main" |  tee -a /etc/apt/sources.list.d/elastic-6.x.list
+
+#
+#RUN echo "deb https://artifacts.elastic.co/packages/oss-6.x/apt stable main" |  tee -a /etc/apt/sources.list.d/elastic-6.x.list
+
+RUN apt-get update && apt-get install -y elasticsearch
+RUN /etc/init.d/elasticsearch start
+
+
