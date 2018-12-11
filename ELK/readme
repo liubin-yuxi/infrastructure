@@ -1,1 +1,5 @@
 使用说明
+filebeat 版本不同 发送的数据格式不太一样，具体需要去官网查看一下介绍。
+
+/opt/logstash/bin/logstash -t -f /etc/logstash/conf.d/11-nginx.conf
+验证logstash配置语法是否正确
