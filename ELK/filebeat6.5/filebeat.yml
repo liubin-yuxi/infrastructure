@@ -25,6 +25,7 @@ filebeat.inputs:
   document_type: beerqierr
   fields:
    type: beerqierr
+   app: hotel
   multiline.pattern: '^(\[\d{4}-\d{2}-\d{2})|^(\d{4}-\d{2}-\d{2})'
   multiline.negate: true
   multiline.match: after
@@ -39,6 +40,7 @@ filebeat.inputs:
     #- c:\programdata\elasticsearch\logs\*
   fields:
     type: nginx-access
+    app: hotel
   document_type: nginx-access
   # Exclude lines. A list of regular expressions to match. It drops the lines that are
   # matching any regular expression from the list.
