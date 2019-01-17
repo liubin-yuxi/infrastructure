@@ -1,0 +1,3 @@
+DATE_CHS %{YEAR}[./-]%{MONTHNUM}[./-]%{MONTHDAY}
+File \w+.py
+Level DEBUG|WARNING|INFO|ERROR

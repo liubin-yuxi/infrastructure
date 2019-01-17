@@ -24,7 +24,7 @@ filebeat.inputs:
    - /var/log/beerqi/err.log
   document_type: beerqierr
   fields:
-   type: beerqierr
+   type: apilog
    app: hotel
   multiline.pattern: '^(\[\d{4}-\d{2}-\d{2})|^(\d{4}-\d{2}-\d{2})'
   multiline.negate: true

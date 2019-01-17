@@ -4,4 +4,5 @@ docker run -d --name elk  -p 5601:5601 -p 9200:9200  -p 5044:5044 \
 -v /etc/elasticsearch/elasticsearch.yml:/etc/elasticsearch/elasticsearch.yml \
 -v /var/log/elasticsearch:/var/log/elasticsearch \
 -v /var/log/logstash:/var/log/logstash \
+-v /var/log/kibana:/var/log/kibana \
   sebp/elk
