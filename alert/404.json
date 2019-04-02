@@ -1,0 +1,89 @@
+{
+  "actions": {
+    "Webhook_4c6cee6e-1fd7-4f54-be80-fb799aa0bad9": {
+      "name": "Webhook",
+      "throttle_period": "1s",
+      "webhook": {
+        "priority": "high",
+        "stateless": false,
+        "method": "POST",
+        "host": "112.81.63.198",
+        "port": "9999",
+        "path": "/sendEmail",
+        "body": "{\n  \"watcher\": \"{{watcher.title}}\",\n  \"payload_count\": \"{{payload.hits.total}}\",\n  \"title\":\"【告警】【酒店测试】404告警\",\n  \"content\":\"告警测试 过去24小时出现【{{payload.hits.total}}】次,{{payload.host.name 如有}}【服务器ip 如有】{{payload}}\",\n  \"receiver\":[\"liubin@yuxisoft.cn\"]\n}",
+        "params": {
+          "watcher": "{{watcher.title}}",
+          "payload_count": "{{payload.hits.total}}",
+          "title": "【告警】【酒店测试】500告警",
+          "content": "告警测试 过去24小时出现【{{payload.hits.total}}】次,{{payload.host.name 如有}}【服务器ip 如有】{{payload}}",
+          "receiver": [
+            "liubin@yuxisoft.cn"
+          ]
+        },
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "auth": "",
+        "message": ""
+      }
+    }
+  },
+  "input": {
+    "search": {
+      "request": {
+        "index": [
+          "nginx-access-*"
+        ],
+        "body": {
+          "query": {
+            "bool": {
+              "must": [
+                {
+                  "match": {
+                    "http_status": "404"
+                  }
+                }
+              ],
+              "filter": {
+                "range": {
+                  "@timestamp": {
+                    "format": "epoch_millis",
+                    "gte": "now-24h/h",
+                    "lte": "now/h"
+                  }
+                }
+              }
+            }
+          },
+          "size": 0,
+          "aggs": {
+            "dateAgg": {
+              "date_histogram": {
+                "field": "@timestamp",
+                "time_zone": "Europe/Amsterdam",
+                "interval": "1m",
+                "min_doc_count": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "condition": {
+    "script": {
+      "script": "payload.hits.total>1"
+    }
+  },
+  "trigger": {
+    "schedule": {
+      "later": "every 5 minutes"
+    }
+  },
+  "disable": true,
+  "report": false,
+  "title": "404test",
+  "save_payload": false,
+  "spy": false,
+  "impersonate": false
+}

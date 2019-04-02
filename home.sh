@@ -22,13 +22,25 @@ process(){
 		echo "1231231231"
 		goon
 			;;
+
+
+		11 )
+		echo "666"
+		goon
+			;;
+
 		666 )
 		echo "666"
 		goon
 			;;
+
+
+		0 )
+			exit 0
+			;;
 		* )
 			echo "无效输入"
-			exit 0 
+			goon
 			;;
 	esac
 }
@@ -42,7 +54,11 @@ welcom(){
 	echo "  4. 安装java （ver:oracle-java8)    "
 	echo "  5. 安装nginx并拷贝配置模板，后续需要手工完善  "
 	echo "  "
+	echo "  11. 释放docker占用的磁盘空间"
+	echo "  "
 	echo "  666. 一键安装  "
+	echo "  "
+	echo "  0. 退出 " 
 	echo "----------------------------------------------"
 	echo "**   要同时装jenkins和docker的，先装jenkins    **"
 	read -p "  请选择：  " choice
