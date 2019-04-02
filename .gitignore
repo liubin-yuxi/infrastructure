@@ -1,2 +1,7 @@
-
+node_modules/
+.idea/
+package-lock.json
+dist/
+.DS_Store
+.history/
 ELK/jdk-8u192-linux-x64\.tar\.gz
