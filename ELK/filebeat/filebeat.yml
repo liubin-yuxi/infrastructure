@@ -14,26 +14,55 @@ filebeat.prospectors:
 # Each - is a prospector. Most options can be set at the prospector level, so
 # you can use different prospectors for various configurations.
 # Below are the prospector specific configurations.
-- input_type: log
+- input: log
   enabled: true
   paths:
-   - /var/log/dingnuo/err.log
-  document_type: dingnuoerr
-  multiline.pattern: '^(\[\d{4}-\d{2}-\d{2})|^(\d{4}-\d{2}-\d{2})'
+    - /var/log/ugc/log_error.log
+  document_type: apilog
+  fields:
+    type: apilog
+    app: ugc
+    level: error
+  multiline.pattern: '^\['
   multiline.negate: true
   multiline.match: after
 
-- input_type: log
+- input: log
+  enabled: true
+  paths:
+    - /var/log/ugc/log_info.log
+  document_type: apilog
+  fields:
+    type: apilog
+    app: ugc
+    level: info
+  multiline.pattern: '^\['
+  multiline.negate: true
+  multiline.match: after
 
+- input: log
+  enabled: true
+  paths:
+    - /var/log/ugc/log_warn.log
+  document_type: apilog
+  fields:
+    type: apilog
+    app: ugc
+    level: warn
+  multiline.negate: true
+  multiline.match: after
+
+- input: log
   # Paths that should be crawled and fetched. Glob based paths.
   paths:
-    - /var/log/nginx/dingnuo_access.log
+    - /var/log/nginx/ugc_access.log
     #- /var/log/*.log
     #- /var/log/dingnuo/err.log
     #- c:\programdata\elasticsearch\logs\*
-
+  fields:
+    type: nginx-access
+    app: ugc
   document_type: nginx-access
-
   # Exclude lines. A list of regular expressions to match. It drops the lines that are
   # matching any regular expression from the list.
   #exclude_lines: ["^DBG"]
@@ -102,7 +131,7 @@ filebeat.prospectors:
 #----------------------------- Logstash output --------------------------------
 output.logstash:
   # The Logstash hosts
-  hosts: ["47.97.165.253:5044"]
+  hosts: ["test.yuxisoft.cn:15044"]
   bulk_max_size: 1024
 
   # Optional SSL. By default is off.

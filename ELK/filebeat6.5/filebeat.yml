@@ -170,7 +170,7 @@ setup.kibana:
 #----------------------------- Logstash output --------------------------------
 output.logstash:
   # The Logstash hosts
-  hosts: ["g22k663303.imwork.net:15044"]
+  hosts: ["112.81.63.198:15044"]
 
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications
