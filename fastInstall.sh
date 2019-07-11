@@ -5,10 +5,10 @@ sh ./installDocker/setupDocker.sh
 
 sh ./ELK/filebeat6.5/installFileBeat.sh
 
-copy ./ELK/filebeat6.5/filebeat.yml /etc/filebeat/
+cp ./ELK/filebeat6.5/filebeat.yml /etc/filebeat/
 
-copy ./nginx.conf/nginx.conf /etc/nginx/
-copy ./nginx.conf/app-ssl.conf /etc/nginx/sites-enabled/
+cp ./nginx.conf/nginx.conf /etc/nginx/
+cp ./nginx.conf/api-ssl.conf /etc/nginx/sites-enabled/
 
 
 echo "***********"
