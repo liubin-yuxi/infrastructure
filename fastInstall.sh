@@ -1,4 +1,6 @@
 apt-get install -yqq nginx
+mkdir -p /etc/nginx/cert
+
 
 sh ./installDocker/installDocker.sh
 sh ./installDocker/setupDocker.sh
