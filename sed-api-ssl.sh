@@ -4,7 +4,7 @@ key=
 app=
 port=
 
-fname=etc/nginx/sites-enabled/api-ssl.conf
+fname=/etc/nginx/sites-enabled/api-ssl.conf
 
 sed -i "s/#domain/$domain/g" $fname
 sed -i "s/#crt/$crt/g" $fname
